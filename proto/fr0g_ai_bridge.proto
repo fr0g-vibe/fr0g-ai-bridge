@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fr0g_ai_bridge;
 
-option go_package = "fr0g-ai-bridge/internal/pb";
+option go_package = "github.com/fr0g-vibe/fr0g-ai-bridge/internal/pb";
 
 // ChatMessage represents a single message in a conversation
 message ChatMessage {
