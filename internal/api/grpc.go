@@ -7,12 +7,11 @@ import (
 
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
-	pb "github.com/fr0g-vibe/fr0g-ai-bridge/internal/pb"
 )
 
 // GRPCServer implements the Fr0gAiBridge gRPC service
 type GRPCServer struct {
-	pb.UnimplementedFr0gAiBridgeServer
+	// pb.UnimplementedFr0gAiBridgeServer // TODO: Uncomment when protobuf is working
 	client *client.OpenWebUIClient
 }
 
@@ -24,6 +23,8 @@ func NewGRPCServer(openWebUIClient *client.OpenWebUIClient) *GRPCServer {
 }
 
 // HealthCheck implements the health check endpoint
+// TODO: Uncomment when protobuf is working
+/*
 func (s *GRPCServer) HealthCheck(ctx context.Context, req *pb.HealthCheckRequest) (*pb.HealthCheckResponse, error) {
 	// Check OpenWebUI health
 	err := s.client.HealthCheck(ctx)
@@ -41,8 +42,11 @@ func (s *GRPCServer) HealthCheck(ctx context.Context, req *pb.HealthCheckRequest
 
 	return response, nil
 }
+*/
 
 // ChatCompletion implements the chat completion endpoint
+// TODO: Uncomment when protobuf is working
+/*
 func (s *GRPCServer) ChatCompletion(ctx context.Context, req *pb.ChatCompletionRequest) (*pb.ChatCompletionResponse, error) {
 	// Validate request
 	if err := s.validateChatCompletionRequest(req); err != nil {
@@ -63,8 +67,11 @@ func (s *GRPCServer) ChatCompletion(ctx context.Context, req *pb.ChatCompletionR
 
 	return protoResp, nil
 }
+*/
 
 // validateChatCompletionRequest validates the gRPC chat completion request
+// TODO: Uncomment when protobuf is working
+/*
 func (s *GRPCServer) validateChatCompletionRequest(req *pb.ChatCompletionRequest) error {
 	if req.Model == "" {
 		return fmt.Errorf("model is required")
@@ -82,8 +89,11 @@ func (s *GRPCServer) validateChatCompletionRequest(req *pb.ChatCompletionRequest
 	}
 	return nil
 }
+*/
 
 // protoToModel converts protobuf request to internal model
+// TODO: Uncomment when protobuf is working
+/*
 func (s *GRPCServer) protoToModel(req *pb.ChatCompletionRequest) *models.ChatCompletionRequest {
 	modelReq := &models.ChatCompletionRequest{
 		Model:         req.Model,
@@ -116,8 +126,11 @@ func (s *GRPCServer) protoToModel(req *pb.ChatCompletionRequest) *models.ChatCom
 
 	return modelReq
 }
+*/
 
 // modelToProto converts internal model response to protobuf
+// TODO: Uncomment when protobuf is working
+/*
 func (s *GRPCServer) modelToProto(resp *models.ChatCompletionResponse) *pb.ChatCompletionResponse {
 	protoResp := &pb.ChatCompletionResponse{
 		Id:      resp.ID,
@@ -145,3 +158,4 @@ func (s *GRPCServer) modelToProto(resp *models.ChatCompletionResponse) *pb.ChatC
 
 	return protoResp
 }
+*/

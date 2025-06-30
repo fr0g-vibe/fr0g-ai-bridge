@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"fr0g-ai-bridge/internal/models"
+	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 )
 
 // OpenWebUIClient handles communication with OpenWebUI API
