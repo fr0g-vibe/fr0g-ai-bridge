@@ -7,19 +7,24 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 	pb "github.com/fr0g-vibe/fr0g-ai-bridge/internal/pb"
 )
 
+// OpenWebUIClientInterface defines the interface for OpenWebUI client
+type OpenWebUIClientInterface interface {
+	HealthCheck(ctx context.Context) error
+	ChatCompletion(ctx context.Context, req *models.ChatCompletionRequest) (*models.ChatCompletionResponse, error)
+}
+
 // GRPCServer implements the Fr0gAiBridge gRPC service
 type GRPCServer struct {
 	pb.UnimplementedFr0GAiBridgeServer
-	client *client.OpenWebUIClient
+	client OpenWebUIClientInterface
 }
 
 // NewGRPCServer creates a new gRPC server
-func NewGRPCServer(openWebUIClient *client.OpenWebUIClient) *GRPCServer {
+func NewGRPCServer(openWebUIClient OpenWebUIClientInterface) *GRPCServer {
 	return &GRPCServer{
 		client: openWebUIClient,
 	}

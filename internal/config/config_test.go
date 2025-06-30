@@ -102,9 +102,15 @@ logging:
 }
 
 func TestLoadConfig_NonExistentFile(t *testing.T) {
-	_, err := LoadConfig("/non/existent/path/config.yaml")
-	if err == nil {
-		t.Error("expected error for non-existent config file")
+	// Test with non-existent file - should use defaults, not error
+	cfg, err := LoadConfig("/non/existent/path/config.yaml")
+	if err != nil {
+		t.Fatalf("LoadConfig failed: %v", err)
+	}
+	
+	// Should have default values
+	if cfg.Server.HTTPPort != 8080 {
+		t.Errorf("expected default HTTP port 8080, got %d", cfg.Server.HTTPPort)
 	}
 }
 
