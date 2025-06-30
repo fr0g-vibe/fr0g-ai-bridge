@@ -99,7 +99,9 @@ func main() {
 				return
 			}
 
-			grpcServer := grpc.NewServer()
+			grpcServer := grpc.NewServer(
+				grpc.UnaryInterceptor(api.LoggingInterceptor),
+			)
 			bridgeServer := api.NewGRPCServer(openWebUIClient)
 			pb.RegisterFr0GAiBridgeServer(grpcServer, bridgeServer)
 

@@ -38,7 +38,8 @@ func (s *RESTServer) setupRoutes() {
 	// Chat completion endpoint
 	s.router.HandleFunc("/api/chat/completions", s.handleChatCompletion).Methods("POST")
 
-	// Add CORS middleware
+	// Add middleware
+	s.router.Use(s.loggingMiddleware)
 	s.router.Use(s.corsMiddleware)
 }
 
@@ -139,6 +140,32 @@ func (s *RESTServer) writeError(w http.ResponseWriter, statusCode int, message s
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 	json.NewEncoder(w).Encode(errorResp)
+}
+
+// loggingMiddleware logs HTTP requests
+func (s *RESTServer) loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		
+		// Create a response writer wrapper to capture status code
+		wrapper := &responseWriter{ResponseWriter: w, statusCode: http.StatusOK}
+		
+		next.ServeHTTP(wrapper, r)
+		
+		duration := time.Since(start)
+		log.Printf("HTTP %s %s %d %v", r.Method, r.URL.Path, wrapper.statusCode, duration)
+	})
+}
+
+// responseWriter wraps http.ResponseWriter to capture status code
+type responseWriter struct {
+	http.ResponseWriter
+	statusCode int
+}
+
+func (rw *responseWriter) WriteHeader(code int) {
+	rw.statusCode = code
+	rw.ResponseWriter.WriteHeader(code)
 }
 
 // corsMiddleware adds CORS headers

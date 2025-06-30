@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
+	"google.golang.org/grpc"
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 	pb "github.com/fr0g-vibe/fr0g-ai-bridge/internal/pb"
@@ -21,6 +23,22 @@ func NewGRPCServer(openWebUIClient *client.OpenWebUIClient) *GRPCServer {
 	return &GRPCServer{
 		client: openWebUIClient,
 	}
+}
+
+// LoggingInterceptor logs gRPC requests
+func LoggingInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	start := time.Now()
+	
+	resp, err := handler(ctx, req)
+	
+	duration := time.Since(start)
+	status := "OK"
+	if err != nil {
+		status = "ERROR"
+	}
+	
+	log.Printf("gRPC %s %s %v", info.FullMethod, status, duration)
+	return resp, err
 }
 
 // HealthCheck implements the health check endpoint
