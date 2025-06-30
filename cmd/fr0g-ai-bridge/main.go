@@ -13,10 +13,10 @@ import (
 	"time"
 
 	"google.golang.org/grpc"
-	"fr0g-ai-bridge/internal/api"
-	"fr0g-ai-bridge/internal/client"
-	"fr0g-ai-bridge/internal/config"
-	pb "fr0g-ai-bridge/internal/pb"
+	"github.com/fr0g/fr0g-ai-bridge/internal/api"
+	"github.com/fr0g/fr0g-ai-bridge/internal/client"
+	"github.com/fr0g/fr0g-ai-bridge/internal/config"
+	pb "github.com/fr0g/fr0g-ai-bridge/internal/pb"
 )
 
 func main() {
