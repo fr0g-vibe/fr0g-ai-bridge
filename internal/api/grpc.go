@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"log"
 
-	"fr0g-ai-bridge/internal/client"
-	"fr0g-ai-bridge/internal/models"
-	pb "fr0g-ai-bridge/internal/pb"
+	"github.com/fr0g/fr0g-ai-bridge/internal/client"
+	"github.com/fr0g/fr0g-ai-bridge/internal/models"
+	pb "github.com/fr0g/fr0g-ai-bridge/internal/pb"
 )
 
 // GRPCServer implements the Fr0gAiBridge gRPC service

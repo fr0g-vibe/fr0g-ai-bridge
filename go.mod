@@ -1,4 +1,4 @@
-module fr0g-ai-bridge
+module github.com/fr0g/fr0g-ai-bridge
 
 go 1.21
 
