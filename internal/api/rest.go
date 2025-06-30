@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"fr0g-ai-bridge/internal/client"
-	"fr0g-ai-bridge/internal/models"
+	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
+	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 )
 
 // RESTServer handles REST API requests
