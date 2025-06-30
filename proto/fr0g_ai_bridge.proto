@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package fr0g_ai_bridge;
+
+option go_package = "fr0g-ai-bridge/internal/pb";
+
+// ChatMessage represents a single message in a conversation
+message ChatMessage {
+  string role = 1;    // "user", "assistant", "system"
+  string content = 2; // The message content
+}
+
+// ChatCompletionRequest represents a request to the chat completion endpoint
+message ChatCompletionRequest {
+  string model = 1;                    // Model name to use
+  repeated ChatMessage messages = 2;   // Conversation messages
+  optional double temperature = 3;     // Sampling temperature
+  optional int32 max_tokens = 4;       // Maximum tokens to generate
+  optional bool stream = 5;            // Whether to stream the response
+  string persona_prompt = 6;           // Additional persona context
+}
+
+// ChatCompletionResponse represents the response from chat completion
+message ChatCompletionResponse {
+  string id = 1;                       // Unique response ID
+  string object = 2;                   // Object type
+  int64 created = 3;                   // Creation timestamp
+  string model = 4;                    // Model used
+  repeated Choice choices = 5;         // Response choices
+  Usage usage = 6;                     // Token usage information
+}
+
+// Choice represents a single response choice
+message Choice {
+  int32 index = 1;                     // Choice index
+  ChatMessage message = 2;             // The response message
+  string finish_reason = 3;            // Reason for completion
+}
+
+// Usage represents token usage statistics
+message Usage {
+  int32 prompt_tokens = 1;             // Tokens in the prompt
+  int32 completion_tokens = 2;         // Tokens in the completion
+  int32 total_tokens = 3;              // Total tokens used
+}
+
+// HealthCheckRequest for health endpoint
+message HealthCheckRequest {}
+
+// HealthCheckResponse for health endpoint
+message HealthCheckResponse {
+  string status = 1;                   // Health status
+  string version = 2;                  // Service version
+}
+
+// Fr0gAiBridge service definition
+service Fr0gAiBridge {
+  // Health check endpoint
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
+  
+  // Chat completion endpoint
+  rpc ChatCompletion(ChatCompletionRequest) returns (ChatCompletionResponse);
+}

@@ -1,0 +1,24 @@
+# fr0g-ai-bridge Configuration Example
+# Copy this file to config.yaml and modify as needed
+
+server:
+  # HTTP REST API server configuration
+  http_port: 8080
+  # gRPC server configuration  
+  grpc_port: 9090
+  # Host to bind to (0.0.0.0 for all interfaces)
+  host: "0.0.0.0"
+
+openwebui:
+  # OpenWebUI base URL
+  base_url: "http://localhost:3000"
+  # OpenWebUI API key (get from Settings > Account in OpenWebUI)
+  api_key: ""
+  # Request timeout in seconds
+  timeout: 30
+
+logging:
+  # Log level: debug, info, warn, error
+  level: "info"
+  # Log format: json, text
+  format: "json"
