@@ -12,7 +12,6 @@ import (
 
 // GRPCServer implements the Fr0gAiBridge gRPC service
 type GRPCServer struct {
-	pb.UnimplementedFr0gAiBridgeServer
 	client *client.OpenWebUIClient
 }
 
