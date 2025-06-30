@@ -9,15 +9,8 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 )
-
-// OpenWebUIClientInterface defines the interface for OpenWebUI client
-type OpenWebUIClientInterface interface {
-	HealthCheck(ctx context.Context) error
-	ChatCompletion(ctx context.Context, req *models.ChatCompletionRequest) (*models.ChatCompletionResponse, error)
-}
 
 // RESTServer handles REST API requests
 type RESTServer struct {
