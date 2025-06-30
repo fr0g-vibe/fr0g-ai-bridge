@@ -101,7 +101,7 @@ func main() {
 
 			grpcServer := grpc.NewServer()
 			bridgeServer := api.NewGRPCServer(openWebUIClient)
-			pb.RegisterFr0GAiBridgeServiceServer(grpcServer, bridgeServer)
+			pb.RegisterFr0GAiBridgeServer(grpcServer, bridgeServer)
 
 			// Start server in goroutine
 			go func() {
