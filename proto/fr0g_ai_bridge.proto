@@ -54,7 +54,7 @@ message HealthCheckResponse {
 }
 
 // Fr0gAiBridge service definition
-service Fr0gAiBridge {
+service Fr0gAiBridgeService {
   // Health check endpoint
   rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
   
