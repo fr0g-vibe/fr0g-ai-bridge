@@ -1,8 +1,5 @@
 module fr0g-ai-bridge
 
-go 1.24.3
-module fr0g-ai-bridge
-
 go 1.21
 
 require (
