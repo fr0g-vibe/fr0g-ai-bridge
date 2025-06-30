@@ -1,12 +1,7 @@
 package api
 
 import (
-	"context"
-	"fmt"
-	"log"
-
 	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/client"
-	"github.com/fr0g-vibe/fr0g-ai-bridge/internal/models"
 )
 
 // GRPCServer implements the Fr0gAiBridge gRPC service
